@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mybatis-comman" />
         <module name="mybatis-hello-world" />
+        <module name="mybstis-parameters" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="mybatis-comman" target="1.8" />
       <module name="mybatis-hello-world" target="1.8" />
       <module name="mybatis-study" target="1.8" />
+      <module name="mybstis-parameters" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

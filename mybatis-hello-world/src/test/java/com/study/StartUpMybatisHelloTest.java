@@ -55,6 +55,5 @@ public class StartUpMybatisHelloTest {
             System.out.println("更新成功");
         else
             System.out.println("更新失败");
-
     }
 }

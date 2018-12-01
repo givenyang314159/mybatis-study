@@ -12,6 +12,7 @@
     <modules>
         <module>mybatis-hello-world</module>
         <module>mybatis-comman</module>
+        <module>mybstis-parameters</module>
     </modules>
 
     <properties>

@@ -23,4 +23,20 @@
     </update>
 
 
+    <select id="getEmpByIdAndName" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee WHERE id=#{param1} AND lastName=#{param2}
+    </select>
+
+    <select id="getEmpByIdAndName2" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee WHERE id=#{id} AND lastName=#{name}
+    </select>
+
+    <select id="getEmpByIdAndName3" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee WHERE id=#{id} AND lastName=#{lastName}
+    </select>
+
+    <select id="getEmpByMap" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee WHERE id=#{id} AND lastName=#{lastName}
+    </select>
+
 </mapper>

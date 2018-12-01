@@ -1,0 +1,85 @@
+参数传递：
+
+1. 传递多个参数，mybatis 封装参数时候，会封装成一个map默认情况下是用 param1,param2,....paramN 使用#{paramN}获取参数
+
+接口：Employee getEmpByIdAndName(Long id, String name);
+
+xml:
+<select id="getEmpByIdAndName" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee WHERE id=#{param1} AND lastName=#{param2}
+</select>
+调用：
+    @Test
+    public void getEmpbyIDandName() {
+        System.out.println(employeeMapper.getEmpByIdAndName(Long.valueOf(1),"tomupdate2"));
+    }
+
+
+2.命名参数：明确的指明封装参数指定 使用注解@Param
+
+接口：Employee getEmpByIdAndName2(@Param("id") Long id, @Param("name") String lastName);
+
+xml:<select id="getEmpByIdAndName2" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee WHERE id=#{id} AND lastName=#{name}
+ </select>
+
+调用：
+    @Test
+     public void getEmpbyIDandName2() {
+         System.out.println(employeeMapper.getEmpByIdAndName2(Long.valueOf(1),"tomupdate2"));
+     }
+
+
+
+3.如果多个参数正好是业务的POJO，可以直接传递POJO，使用POJO的属性值
+
+ 接口：
+ Employee getEmpByIdAndName3(Employee employee);
+xml：
+<select id="getEmpByIdAndName3" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee WHERE id=#{id} AND lastName=#{lastName}
+</select>
+调用：
+@Test
+       public void getEmpbyIDandName3() {
+           Employee employee=new Employee();
+           employee.setId(Long.valueOf(1)).setLastName("tomupdate2");
+           System.out.println(employeeMapper.getEmpByIdAndName3(employee));
+       }
+
+
+4. 没有对应的POJO,传入Map 的参数, 可以使用map中的key来获取一个
+接口：
+Employee getEmpByMap(Map<String,Object> map);
+xml:
+<select id="getEmpByMap" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee WHERE id=#{id} AND lastName=#{lastName}
+    </select>
+调用：
+    @Test
+    public void getEmpbyIDandName4() {
+        Map<String,Object> map= new HashMap<>();
+        map.put("id",Long.valueOf(1));
+        map.put("lastName","tomupdate2");
+        System.out.println(employeeMapper.getEmpByMap(map));
+    }
+
+5. Map 使用与不经常使用的，如果经常使用的可以封装成一个POJO
+Page{
+Index,size
+
+}
+
+场景：
+getEmployee(@Param("id")Integer id ,String lastName)
+id=#{id} and lastName=#{param2}
+
+getEmployee(Integer id ,Employee emp);
+id=#{param1} and lastName=#{param2.lastName}
+
+//如果封装的是list,collection,set,Array 等，封装对应的key 为各自的名称,可以用@Param指定封装的key
+getEmployee(List<Long>ids)
+
+id=#{list[0]}
+
+
