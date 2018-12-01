@@ -1,5 +1,4 @@
 参数传递：
-
 1. 传递多个参数，mybatis 封装参数时候，会封装成一个map默认情况下是用 param1,param2,....paramN 使用#{paramN}获取参数
 
 接口：Employee getEmpByIdAndName(Long id, String name);
@@ -81,5 +80,46 @@ id=#{param1} and lastName=#{param2.lastName}
 getEmployee(List<Long>ids)
 
 id=#{list[0]}
+
+====================================================================================
+#{} 可以获取获取map或者POJO的值 使用的是占位符
+${} 也可以获取map或者POJO的值 使用的直接拼接
+
+接口：
+Employee getEmpByIdAndName4(Employee employee);
+xml:
+ <select id="getEmpByIdAndName4" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee WHERE id=${id} AND lastName=#{lastName}
+    </select>
+调用：
+ @Test
+    public void getEmpByIDAndName4() {
+        Employee employee=new Employee();
+        employee.setId(Long.valueOf(1)).setLastName("tomupdate2");
+        System.out.println(employeeMapper.getEmpByIdAndName4(employee));
+    }
+
+两者的区别：
+1. #{} 使用的是占位符号，${} 使用的是直接拼接的，调用结果
+EmployeeMapper.getEmpByIdAndName4  : ==>  Preparing: SELECT * FROM t_employee WHERE id=1 AND lastName=?
+
+大多情况下使用的#{}，当多表操作时候使用${}
+
+修改 文件：
+
+接口：Employee getEmpByIdAndName4(@Param("table") String table,@Param("emp") Employee employee);
+
+xml:<select id="getEmpByIdAndName4" resultType="com.study.bean.Employee">
+        SELECT * FROM ${table} WHERE id=${emp.id} AND lastName=#{emp.lastName}
+</select>
+
+调用： @Test
+    public void getEmpByIDAndName4() {
+        Employee employee=new Employee();
+        employee.setId(Long.valueOf(1)).setLastName("tomupdate2");
+        System.out.println(employeeMapper.getEmpByIdAndName4("t_employee",employee));
+    }
+
+Preparing: SELECT * FROM t_employee WHERE id=1 AND lastName=?  结果
 
 

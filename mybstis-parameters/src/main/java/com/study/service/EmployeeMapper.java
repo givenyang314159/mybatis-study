@@ -21,4 +21,7 @@ public interface EmployeeMapper {
     Employee getEmpByIdAndName2(@Param("id") Long id, @Param("name") String lastName);
     Employee getEmpByIdAndName3(Employee employee);
     Employee getEmpByMap(Map<String,Object> map);
+    //Employee getEmpByIdAndName4(Employee employee);
+    Employee getEmpByIdAndName4(@Param("table") String table,@Param("emp") Employee employee);
+
 }

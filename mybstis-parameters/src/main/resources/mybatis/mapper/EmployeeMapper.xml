@@ -39,4 +39,13 @@
         SELECT * FROM t_employee WHERE id=#{id} AND lastName=#{lastName}
     </select>
 
+    <!--
+    <select id="getEmpByIdAndName4" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee WHERE id=${id} AND lastName=#{lastName}
+    </select>
+    -->
+    <select id="getEmpByIdAndName4" resultType="com.study.bean.Employee">
+        SELECT * FROM ${table} WHERE id=${emp.id} AND lastName=#{emp.lastName}
+    </select>
+
 </mapper>

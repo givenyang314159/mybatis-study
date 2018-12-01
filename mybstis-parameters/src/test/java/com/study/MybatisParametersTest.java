@@ -26,21 +26,28 @@ public class MybatisParametersTest {
         System.out.println(employeeMapper.getEmpByIdAndName(Long.valueOf(1),"tomupdate2"));
     }
     @Test
-    public void getEmpbyIDandName2() {
+    public void getEmpbyIDandName1() {
         System.out.println(employeeMapper.getEmpByIdAndName2(Long.valueOf(1),"tomupdate2"));
     }
     @Test
-    public void getEmpbyIDandName3() {
+    public void getEmpbyIDandName2() {
         Employee employee=new Employee();
         employee.setId(Long.valueOf(1)).setLastName("tomupdate2");
         System.out.println(employeeMapper.getEmpByIdAndName3(employee));
     }
     @Test
-    public void getEmpbyIDandName4() {
+    public void getEmpbyIDandName3() {
         Map<String,Object> map= new HashMap<>();
         map.put("id",Long.valueOf(1));
         map.put("lastName","tomupdate2");
         System.out.println(employeeMapper.getEmpByMap(map));
+    }
+
+    @Test
+    public void getEmpByIDAndName4() {
+        Employee employee=new Employee();
+        employee.setId(Long.valueOf(1)).setLastName("tomupdate2");
+        System.out.println(employeeMapper.getEmpByIdAndName4("t_employee",employee));
     }
 
 }
