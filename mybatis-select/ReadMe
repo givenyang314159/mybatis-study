@@ -1,0 +1,35 @@
+1. select返回类型用List 封装
+返回结果为List时候 <select> 标签的resutType 为List 中Object 的类型
+List<Employee> findAll();
+<select id="findAll" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee
+    </select>
+@Test
+    public void getAll()
+    {
+        System.out.println(employeeMapper.findAll());
+    }
+
+[Employee(id=1, lastName=tomupdate2, gender=M, email=eamilupdate@fm), Employee(id=3, lastName=tomupdate, gender=F, email=given@fm.com), Employee(id=5, lastName=张三, gender=女, email=zhangsan@fm.com), Employee(id=6, lastName=given6, gender=F, email=given@fm.com), Employee(id=7, lastName=given7, gender=F, email=given@fm.com), Employee(id=8, lastName=杨畔, gender=男, email=yp@fm.com)]
+============================================================
+
+2. select 返回类型用map 封装
+接口上使用@Mapkey 指定封装map 的key ,select 标签使用返回类型为：Map 中Value的类型
+
+    @MapKey("id")
+    Map<Long,Employee> getByName(@Param("name") String name);
+
+      <select id="getByName" resultType="com.study.bean.Employee">
+            SELECT * FROM t_employee where lastName like '%${name}%'
+        </select>
+ @Test
+    public void getEmpTest()
+    {
+        System.out.println(employeeMapper.getByName("giv"));
+    }
+
+{6=Employee(id=6, lastName=given6, gender=F, email=given@fm.com), 7=Employee(id=7, lastName=given7, gender=F, email=given@fm.com)}
+=====================================================================
+3.  自定义结果集
+
+

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/mybatis-comman/mybatis-comman.iml" filepath="$PROJECT_DIR$/mybatis-comman/mybatis-comman.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis-hello-world/mybatis-hello-world.iml" filepath="$PROJECT_DIR$/mybatis-hello-world/mybatis-hello-world.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis-select/mybatis-select.iml" filepath="$PROJECT_DIR$/mybatis-select/mybatis-select.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis-study.iml" filepath="$PROJECT_DIR$/mybatis-study.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybstis-parameters/mybstis-parameters.iml" filepath="$PROJECT_DIR$/mybstis-parameters/mybstis-parameters.iml" />
     </modules>

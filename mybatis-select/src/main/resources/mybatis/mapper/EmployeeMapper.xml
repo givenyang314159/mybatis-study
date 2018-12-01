@@ -22,5 +22,9 @@
         update t_employee set lastName=#{lastName},email=#{email},gender=#{gender} where id =#{id}
     </update>
 
+    <select id="getByName" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee where lastName like '%${name}%'
+    </select>
+
 
 </mapper>
