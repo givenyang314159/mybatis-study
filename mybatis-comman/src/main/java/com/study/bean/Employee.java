@@ -11,6 +11,6 @@ public class Employee {
     private Long id;
     private String lastName;
     private String gender;
-    private String emial;
-    
+    private String email;
+
 }

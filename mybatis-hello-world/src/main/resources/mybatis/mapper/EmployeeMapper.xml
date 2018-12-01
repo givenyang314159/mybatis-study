@@ -5,7 +5,20 @@
     <select id="findOne" resultType="com.study.bean.Employee" parameterType="long">
         SELECT id,lastName,gender,email FROM t_employee WHERE id=#{id}
     </select>
+
     <select id="findAll" resultType="com.study.bean.Employee">
         SELECT * FROM t_employee
     </select>
+
+    <insert id="add" parameterType="com.study.bean.Employee">
+        INSERT INTO t_employee(lastName,gender,email) VALUES (#{lastName},#{gender},#{email})
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM t_employee where id=#{id}
+    </delete>
+
+    <update id="update" parameterType="com.study.bean.Employee">
+        update t_employee set lastName=#{lastName},email=#{email},gender=#{gender} where id =#{id}
+    </update>
 </mapper>

@@ -11,5 +11,5 @@ public interface EmployeeMapper {
     public List<Employee> findAll();
     boolean add(Employee employee);
     boolean delete(Long id);
-    boolean update (Long id);
+    boolean update (Employee employee);
 }
