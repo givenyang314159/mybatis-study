@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.service.DeptMapper">
+    <select id="findDeptById" resultType="com.study.bean.Department">
+      SELECT * FROM t_dep WHERE id=#{id}
+    </select>
+
+    <resultMap id="dept" type="com.study.bean.Department">
+        <id column="did" property="id"></id>
+        <result column="deptName" property="name"></result>
+        <collection property="emps" ofType="com.study.bean.Employee">
+            <id column="eid" property="id"></id>
+            <result column="lastName" property="lastName"></result>
+            <result column="gender" property="gender"/>
+            <result column="email" property="email"/>
+        </collection>
+    </resultMap>
+
+    <select id="findDeptByIdAndEmps" resultMap="dept2">
+        SELECT t.id did,t.`name` deptName,e.id eid,e.lastName lastName,e.gender gender,e.email email FROM t_dep t LEFT JOIN t_employee e ON t.id=e.depid where t.id=#{id}
+    </select>
+
+
+    <resultMap id="dept2" type="com.study.bean.Department">
+        <id column="did" property="id"></id>
+        <result column="deptName" property="name"></result>
+        <collection property="emps" select="com.study.service.EmployeeMapper.findEmpByDepid" column ="{depid=did}"/>
+    </resultMap>
+
+    <select id="findDeptByIdAndEmp2" resultMap="dept2">
+        SELECT t.id did,t.`name` deptName FROM t_dep t WHERE t.id=#{id}
+    </select>
+
+</mapper>

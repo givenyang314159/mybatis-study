@@ -11,14 +11,16 @@ import java.util.Map;
 
 @Mapper
 public interface EmployeeMapper {
-    Employee findOne(Long id);
-    List<Employee> findAll();
-    boolean add(Employee employee);
-    boolean delete(Long id);
-    boolean update(Employee employee);
 
+    List<Employee> findAll();
     @MapKey("id")
     Map<Long,Employee> getByName(@Param("name") String name);
+
+    List<Employee> findallbyResutMap();
+
+    Employee findEmpAndDept(@Param("id") Long id );
+    Employee findEmpAndDeptByStep(@Param("id") Long id);
+    Employee findEmpByDepid(@Param("depid") Long depid);
 
 
 }

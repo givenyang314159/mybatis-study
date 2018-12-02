@@ -4,14 +4,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
-public class Employee {
+public class Department {
     private Long id;
-    private String lastName;
-    private String gender;
-    private String email;
-    Department dept;
-
+    private String name;
+    List<Employee> emps;
 }
