@@ -1,0 +1,78 @@
+xml中的转义字符
+"   &quot;
+'   &apos;
+&   &amp;
+<    &lt;
+>    &gt;
+=============================if 标签=================================
+if 标签
+在动态 SQL 中所做的最通用的事情是包含部分 where 字句的条件。比如:
+  <select id="findBycondition" resultType="com.study.bean.Employee">
+        SELECT * FROM t_employee WHERE
+        <if test="id !=null">
+            id=#{id}
+        </if>
+        <if test="lastName != null  &amp;&amp; lastName != &quot;&quot;">
+            and lastName=#{lastName}
+        </if>
+        <if test="email !=null">
+            and email=#{email}
+        </if>
+        <if test="gender != null">
+            and gender=#{gender}
+        </if>
+    </select>
+
+调用：
+public void findBycondition() {
+            Employee employee =new Employee();
+            employee.setId(Long.valueOf(8)).setLastName("杨畔");
+            System.out.println(employeeMapper.findBycondition(employee));
+        }
+
+结果：SELECT * FROM t_employee WHERE id=? and lastName=?
+
+Q:当id为空的时候查询语句就会报错：
+SELECT * FROM t_employee WHERE and lastName=?
+
+A1: where 后面添加一个 1=1 然后所有的if 字句都用and 打头
+A2: 直接使用where标签 只会删除 字句最前面的一个 and 或者 or 等关键字
+========================where 标签 trim 标签=========================================
+<where></where>标签
+
+<trim></trim>
+
+等效WHERE
+去掉前缀中的and 或者or
+<trim prefix="WHERE" prefixOverrides="AND |OR ">
+  ...
+</trim>
+去掉后缀中的and 或者or
+<trim prefix="where" suffixOverrides="and|or"></trim>
+
+============================ Set标签======================================
+<set> 标签 和if标签连用，<set>标签是删除后面一个的 ,
+
+<update id="updateAuthorIfNecessary"
+       parameterType="domain.blog.Author">
+  update Author
+    <set>
+      <if test="username != null">username=#{username},</if>
+      <if test="password != null">password=#{password},</if>
+      <if test="email != null">email=#{email},</if>
+      <if test="bio != null">bio=#{bio}</if>
+    </set>
+  where id=#{id}
+</update>
+
+与trim的标签一致
+<trim prefix="SET" suffixOverrides=",">
+  ...
+</trim>
+==================================Sql 标签===================================
+sql 标签指明 被引用的内容，然后再引用的地方使用<include></include> 标签
+  <sql id="empColumns">
+        id,lastName,gender,email
+    </sql>
+
+      SELECT <include refid="empColumns"/> FROM t_employee
