@@ -16,7 +16,7 @@ public class MybatisDynamicSqlTest {
     @Test
     public void findBycondition() {
         Employee employee =new Employee();
-        employee.setLastName("杨畔");
+        employee.setLastName("tom");
         System.out.println(employeeMapper.findBycondition(employee));
     }
 

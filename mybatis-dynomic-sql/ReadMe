@@ -76,3 +76,5 @@ sql 标签指明 被引用的内容，然后再引用的地方使用<include></i
     </sql>
 
       SELECT <include refid="empColumns"/> FROM t_employee
+
+=====================================================================
