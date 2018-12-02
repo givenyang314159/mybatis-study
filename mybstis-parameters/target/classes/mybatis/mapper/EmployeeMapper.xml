@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.study.service3.EmployeeMapper">
+<mapper namespace="com.study.service.EmployeeMapper">
     <select id="findOne" resultType="com.study.bean.Employee" parameterType="long">
         SELECT id,lastName,gender,email FROM t_employee WHERE id=#{id}
     </select>

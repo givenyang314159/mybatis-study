@@ -1,4 +1,4 @@
-package com.study.service;
+package com.study.service3;
 
 import com.study.bean.Employee;
 import org.apache.ibatis.annotations.Mapper;

@@ -1,7 +1,7 @@
 package com.study;
 
 import com.study.bean.Employee;
-import com.study.service.EmployeeMapper;
+import com.study.service3.EmployeeMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.study.service;
+package com.study.service2;
 
 import com.study.bean.Department;
 import org.apache.ibatis.annotations.Mapper;
